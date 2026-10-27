@@ -131,3 +131,6 @@ button.secundario:hover { background: rgba(255, 255, 255, 0.15); }
 #msg-form.falha { color: var(--recusado); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Garante que o atributo hidden esconde mesmo os elementos com display definido */
+[hidden] { display: none !important; }
