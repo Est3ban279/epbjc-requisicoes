@@ -11,12 +11,12 @@ import {
 // Copia-a de: Consola Firebase > Definições do projeto > As tuas apps.
 // NUNCA coloques aqui Client Secret da Microsoft nem service-account.json.
 const firebaseConfig = {
-  apiKey: "COLA_AQUI",
-  authDomain: "COLA_AQUI.firebaseapp.com",
-  projectId: "COLA_AQUI",
-  storageBucket: "COLA_AQUI.appspot.com",
-  messagingSenderId: "COLA_AQUI",
-  appId: "COLA_AQUI"
+  apiKey: "AIzaSyBLTVV7l5ukFr3jHVxVgsdUWiCZEhszYVY",
+  authDomain: "epbjc-requisicoes.firebaseapp.com",
+  projectId: "epbjc-requisicoes",
+  storageBucket: "epbjc-requisicoes.firebasestorage.app",
+  messagingSenderId: "304311459132",
+  appId: "1:304311459132:web:e245e6bae4ea6b4f2f5239"
 };
 
 const DOMINIO = "alunos.epbjc.pt";
