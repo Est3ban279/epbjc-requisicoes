@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Requisição de equipamentos · EPBJC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topo">
+    <h1>Requisição de equipamentos</h1>
+    <div id="sessao" hidden>
+      <span id="nome-utilizador"></span>
+      <button id="btn-sair" class="secundario" type="button">Terminar sessão</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="vista-login" class="painel entrada" hidden>
+      <h2>Precisas de um portátil, tablet ou projetor?</h2>
+      <p>Entra com a tua conta Microsoft da escola para fazer um pedido e acompanhar o estado.</p>
+      <button id="btn-entrar" type="button">Entrar com Microsoft</button>
+      <p id="erro-login" class="erro" role="alert" hidden></p>
+    </section>
+
+    <div id="vista-app" class="grelha" hidden>
+      <section class="painel">
+        <h2>Novo pedido</h2>
+        <form id="form-pedido" novalidate>
+          <label for="equipamento">Equipamento</label>
+          <select id="equipamento" required>
+            <option value="">Escolhe um equipamento</option>
+            <option>Portátil01</option>
+            <option>Portátil02</option>
+            <option>Tablet01</option>
+            <option>Tablet02</option>
+            <option>Projetor01</option>
+          </select>
+
+          <div class="duas-colunas">
+            <div>
+              <label for="data-pedido">Data do pedido</label>
+              <input id="data-pedido" type="date" required>
+            </div>
+            <div>
+              <label for="devolucao">Devolução prevista</label>
+              <input id="devolucao" type="date" required>
+            </div>
+          </div>
+
+          <label for="observacoes">Observações (opcional)</label>
+          <textarea id="observacoes" rows="3" maxlength="500"></textarea>
+
+          <button type="submit" id="btn-enviar">Enviar pedido</button>
+          <p id="msg-form" role="status"></p>
+        </form>
+      </section>
+
+      <section class="painel">
+        <h2>Os meus pedidos</h2>
+        <ul id="lista-pedidos" class="pedidos"></ul>
+        <p id="vazio" class="vazio" hidden>Ainda não fizeste nenhum pedido. Preenche o formulário para começar.</p>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
