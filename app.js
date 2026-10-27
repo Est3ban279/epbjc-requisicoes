@@ -11,7 +11,7 @@ import {
 // Copia-a de: Consola Firebase > Definições do projeto > As tuas apps.
 // NUNCA coloques aqui Client Secret da Microsoft nem service-account.json.
 const firebaseConfig = {
-  apiKey: "AIzaSyBLTVV7l5ukFr3jHVxVgsdUWiCZEhszYVY",
+  apiKey: "https://psigpsi1.github.io/projeto/",
   authDomain: "epbjc-requisicoes.firebaseapp.com",
   projectId: "epbjc-requisicoes",
   storageBucket: "epbjc-requisicoes.firebasestorage.app",
