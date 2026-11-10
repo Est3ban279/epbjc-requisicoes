@@ -87,8 +87,12 @@ async function estaAutorizado(user) {
   try {
     const snap = await getDoc(doc(db, "authorizedUsers", email));
     return snap.exists() && snap.data().active === true;
-  } catch (e) {
+    } catch (e) {
     console.error("Erro ao ler authorizedUsers:", e.code, e.message);
+    try {
+      const t = await user.getIdTokenResult();
+      console.log("email_verified:", t.claims.email_verified, "| email:", t.claims.email);
+    } catch (_) {}
     return false;
   }
 }
