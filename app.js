@@ -37,6 +37,7 @@ const vazio = $("vazio");
 const msgForm = $("msg-form");
 
 let cancelarPedidos = null;
+let diagnostico = "";
 
 // ---------- Autenticação ----------
 $("btn-entrar").addEventListener("click", async () => {
@@ -87,12 +88,15 @@ async function estaAutorizado(user) {
   try {
     const snap = await getDoc(doc(db, "authorizedUsers", email));
     return snap.exists() && snap.data().active === true;
-    } catch (e) {
+  } catch (e) {
     console.error("Erro ao ler authorizedUsers:", e.code, e.message);
     try {
       const t = await user.getIdTokenResult();
       console.log("email_verified:", t.claims.email_verified, "| email:", t.claims.email);
-    } catch (_) {}
+      diagnostico = "erro: " + e.code + " | email_verified: " + t.claims.email_verified;
+    } catch (_) {
+      diagnostico = "erro: " + e.code;
+    }
     return false;
   }
 }
@@ -108,7 +112,9 @@ onAuthStateChanged(auth, async (user) => {
 
   if (!(await estaAutorizado(user))) {
     await signOut(auth);
-    mostrarErroLogin("Esta conta não está autorizada a requisitar equipamentos.");
+    mostrarErroLogin("Esta conta não está autorizada a requisitar equipamentos."
+      + (diagnostico ? " [" + diagnostico + "]" : ""));
+    diagnostico = "";
     return;
   }
 
