@@ -26,7 +26,7 @@ Equipamentos: Portátil01, Portátil02, Tablet01, Tablet02, Projetor01. Estados:
 
 1. **Importar a whitelist** (Manual de Primeira Utilização, secções 3 a 12): Node.js, `authorized-users.json`, `seed-authorized-users.mjs`, `GOOGLE_APPLICATION_CREDENTIALS`, `node seed-authorized-users.mjs`. Confirma 18 documentos em `authorizedUsers`.
 2. **Autenticação Microsoft**: Firebase > Authentication > Sign-in method > Microsoft (Client ID e Client Secret só aqui, na consola). O URI de redirecionamento do Entra é o do Firebase (`https://NOME-DO-PROJETO.firebaseapp.com/__/auth/handler`), não o do GitHub Pages.
-3. **Configurar `app.js`**: substitui os `COLA_AQUI` do `firebaseConfig` pela configuração Web do teu projeto. Só pode existir uma declaração `const firebaseConfig`.
+3. **Configurar `app.js`**: confirma que o `firebaseConfig` é o da configuração Web do teu projeto e que o `TENANT_ID` é o da escola. Só pode existir uma declaração `const firebaseConfig`.
 4. **Regras**: cola `firestore.rules` em Firestore Database > Rules e publica.
 5. **Admin (opcional)**: cria em `admins` um documento com o UID Firebase do responsável (aparece em Authentication depois do primeiro login).
 6. **Publicar no GitHub Pages** (Manual GitHub Pages): carrega `index.html`, `style.css`, `app.js` (e opcionalmente `README.md` e `firestore.rules`) na raiz do repositório, ativa Pages (branch `main`, `/(root)`) e autoriza `UTILIZADOR.github.io` em Authentication > Settings > Authorized domains.
