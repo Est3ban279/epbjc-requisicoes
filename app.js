@@ -20,7 +20,8 @@ const firebaseConfig = {
 };
 
 const DOMINIO = "alunos.epbjc.pt";
-const TENANT_ID = ""; // opcional: Tenant ID do Microsoft Entra (restringe o login à escola)
+// Directory (tenant) ID do Microsoft Entra da escola (não é segredo). Confirmar com a professora.
+const TENANT_ID = "4334e4b0-48f4-4a76-ae54-cec847437a72";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -54,7 +55,7 @@ $("btn-entrar").addEventListener("click", async () => {
 $("btn-sair").addEventListener("click", () => signOut(auth));
 
 function emailNormalizado(user) {
-  return (user.email || "").toLowerCase();
+  return (user.email || user.providerData?.[0]?.email || "").toLowerCase();
 }
 
 function mostrarErroLogin(texto) {
@@ -87,6 +88,7 @@ async function estaAutorizado(user) {
     const snap = await getDoc(doc(db, "authorizedUsers", email));
     return snap.exists() && snap.data().active === true;
   } catch (e) {
+    console.error("Erro ao ler authorizedUsers:", e.code, e.message);
     return false;
   }
 }
@@ -122,10 +124,11 @@ function iniciarPedidos(user) {
     q,
     (snap) => {
       const pedidos = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      pedidos.sort((a, b) => (b.criadoEm?.seconds || 0) - (a.criadoEm?.seconds || 0));
+      pedidos.sort((a, b) => (b.criadoEm?.seconds ?? Infinity) - (a.criadoEm?.seconds ?? Infinity));
       desenharPedidos(pedidos);
     },
-    () => {
+    (err) => {
+      console.error("Erro ao ler requisicoes:", err.code, err.message);
       vazio.textContent = "Não foi possível carregar os teus pedidos.";
       vazio.hidden = false;
     }
